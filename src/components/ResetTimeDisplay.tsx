@@ -6,10 +6,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-// import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import styled from 'styled-components';
 
 // リセット時間を更新したら
 // ローカルストレージのtestResetHourを更新する
@@ -20,29 +18,17 @@ type Props = {
   lastResetedMilliKey: string
 }
 
-const ButtonTypo = styled.span`
-  color: white;
-`
 
 const ResetTimeDisplay = (props: Props) => {
   
   const [resetHour, setResetHour] = useState<string>("0")
 
-  // const tmp = new Date(Number(localGetItem(props.resetMilliKey)))
-  // const [nextReset, setNextReset] = useState<string>(
-  //   String(tmp.getHours())
-  // )
-
-  // const tmp = new Date(Number(localGetItem(props.resetMilliKey)))
+  const tmp: string | any = localGetItem(props.hourKey)
   const [nextReset, setNextReset] = useState<string>(
-    localGetItem(props.hourKey)
+    tmp ? tmp : "0"
   )
 
   const hourArr = [...Array(24)].map((_, i) => i)
-
-  // const handleChange = (event: SelectChangeEvent) => {
-  //   setResetHour(event.target.value as string)
-  // }
 
   const changeResetTime = async () => {
     const res = window.confirm(`リセット時間を${resetHour}時に更新してもよろしいですか？`)
@@ -64,13 +50,14 @@ const ResetTimeDisplay = (props: Props) => {
 
   return (
     <div>
-      <p>リセット:{`${nextReset}時00分`}</p>
+      <h2>リセット:{`${nextReset}時00分`}</h2>
 
       <Grid container justifyContent="center">
       <Grid item xs={4}>
         <FormControl fullWidth>
-        <InputLabel id="hour">Hour</InputLabel>
+        <InputLabel id="hour" sx={{fontSize: 20}}>Hour</InputLabel>
         <Select
+          sx={{fontSize: 20}}
           labelId="hour"
           id="demo-simple-select"
           value={resetHour}
@@ -80,16 +67,13 @@ const ResetTimeDisplay = (props: Props) => {
           {
             hourArr.map((h, i) => {
               return (
-                <MenuItem key={i} value={h}>{h}</MenuItem>
+                <MenuItem key={i} value={h} sx={{fontSize: 20}}>{h}</MenuItem>
               )
             })
           }
         </Select>
-        <Button sx={{marginTop: 1}} onClick={changeResetTime} style={{"background": "black"}}>
-          <ButtonTypo>
-            変更
-          </ButtonTypo>
-          
+        <Button sx={{marginTop: 1, fontSize: 15, color: 'white'}} onClick={changeResetTime} style={{"background": "black"}}>
+          変更          
         </Button>
         </ FormControl>
         </Grid>

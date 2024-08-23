@@ -22,6 +22,7 @@ const ContentWrapper = styled.span`
   width: 40rem;
   overflow: hidden;
   font-weight: bold;
+  font-size: 1.2rem;
   @media screen and (max-width: 840px) {
     width: 30rem;
   }
@@ -105,9 +106,6 @@ const RoutineList = (props: Props) => {
 
   return (
     <div>
-      {/* <p>
-        {allCheck ? <span>true</span> : <span>false</span>}
-      </p> */}
       <TableContainer>
         <Table>
           <TableHead style={{"backgroundColor": "black"}}>
@@ -116,7 +114,11 @@ const RoutineList = (props: Props) => {
                 {/* チェックするとすべてdoneにする */}
                 <Checkbox color="primary" style={{"color": "white"}} checked={allCheck ? true : false} onChange={() => allCheckRoutine(allCheck)} />
               </TableCell>
-              <TableCell style={{"color": "white"}} align="center">Content</TableCell>
+              <TableCell style={{"color": "white"}} sx={{fontSize: 30}} align="center">
+                <ContentWrapper>
+                  Content
+                </ContentWrapper>
+              </TableCell>
               <TableCell align="center">
                 {/* クリックすると全削除 */}
                 <IconButton onClick={allDeleteRoutine}>
@@ -133,8 +135,8 @@ const RoutineList = (props: Props) => {
                     <TableCell align="center">
                       <Checkbox color="default" checked={r.done ? true : false} onChange={() => toggleStatus(r.id, r.done)} />
                     </TableCell>
-                    <TableCell align="center">
-                    <Tooltip title={r.content}>
+                    <TableCell align="center" sx={{fontSize: 30}}>
+                    <Tooltip title={<h1>r.content</h1>} arrow>
                       <ContentWrapper>
                         {r.content}
                       </ContentWrapper>
@@ -152,11 +154,6 @@ const RoutineList = (props: Props) => {
           </TableBody>
         </Table>
       </TableContainer>
-      {/* <p>
-        <button onClick={allCheckRoutine}>All Done</button>
-        <br />
-        <button onClick={allDeleteRoutine}>All Delete</button>
-      </p> */}
     </div>
   )
 }
