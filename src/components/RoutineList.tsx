@@ -56,7 +56,7 @@ const RoutineList = (props: Props) => {
   }
 
   if (props.reset) {
-    allRoutines?.map(r => {
+    allRoutines?.forEach(r => {
       routinesAllNotDone(r.id)
     })
   }
@@ -78,13 +78,13 @@ const RoutineList = (props: Props) => {
 
   const allCheckRoutine = async (allCheck: boolean) => {
     if (!allCheck) {
-      allRoutines?.map(r => {
+      allRoutines?.forEach(r => {
         db.routines.update( r.id, {done: 1})
       })
       setAllCheck(true)
       localSetItem(localAllCheckKey, "1")
     } else {
-      allRoutines?.map(r => {
+      allRoutines?.forEach(r => {
         db.routines.update( r.id, {done: 0})
       })
       setAllCheck(false)
@@ -96,7 +96,7 @@ const RoutineList = (props: Props) => {
   const allDeleteRoutine = async () => {
     const res = window.confirm("ルーティーンを全削除してもよろしいですか？")
     if (res) {
-      allRoutines?.map(r => {
+      allRoutines?.forEach(r => {
         db.routines.delete(r.id)
       })
       alert("削除しました")
