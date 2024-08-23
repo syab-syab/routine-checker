@@ -80,7 +80,7 @@ const Main = () => {
       // クリーンアップ処理
       // return無しだと挙動がおかしくなるから必要
       return () => clearInterval(count)
-    }, [current])
+    }, [current, currentMilli, lastResetedMilliValue, nextResetMilliValue, resetHourValue])
 
 
   const [content, setContent] = useState<string>("")

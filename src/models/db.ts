@@ -6,7 +6,7 @@ export class RoutineClass extends Dexie {
   routines!: Table<Routine>
 
   constructor() {
-    super('testRoutineTest');
+    super('routineList');
     this.version(1).stores({
       routines: '++id, content, done',
     });
