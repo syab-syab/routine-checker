@@ -28,9 +28,14 @@ const ResetTimeDisplay = (props: Props) => {
   
   const [resetHour, setResetHour] = useState<string>("0")
 
-  const tmp = new Date(Number(localGetItem(props.resetMilliKey)))
+  // const tmp = new Date(Number(localGetItem(props.resetMilliKey)))
+  // const [nextReset, setNextReset] = useState<string>(
+  //   String(tmp.getHours())
+  // )
+
+  // const tmp = new Date(Number(localGetItem(props.resetMilliKey)))
   const [nextReset, setNextReset] = useState<string>(
-    String(tmp.getHours())
+    localGetItem(props.hourKey)
   )
 
   const hourArr = [...Array(24)].map((_, i) => i)
