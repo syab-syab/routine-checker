@@ -136,7 +136,7 @@ const RoutineList = (props: Props) => {
                       <Checkbox color="default" checked={r.done ? true : false} onChange={() => toggleStatus(r.id, r.done)} />
                     </TableCell>
                     <TableCell align="center" sx={{fontSize: 30}}>
-                    <Tooltip title={<h1>r.content</h1>} arrow>
+                    <Tooltip title={<h1>{r.content}</h1>} arrow>
                       <ContentWrapper>
                         {r.content}
                       </ContentWrapper>
